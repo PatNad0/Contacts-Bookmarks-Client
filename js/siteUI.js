@@ -162,9 +162,13 @@ function renderBookmarkForm(bookmark = null) {
   $("#abort").show();
   eraseContent();
   let create = bookmark == null;
+  let flag = "";
   if (create) {
     bookmark = newBookmark();
-    bookmark.Url = "urltemp";
+    flag = "temp";
+  }
+  else{
+    flag = bookmark.Url;
   }
   $("#actionTitle").text(create ? "Création" : "Modification");
 
@@ -172,7 +176,7 @@ function renderBookmarkForm(bookmark = null) {
         <form class="form" id="bookmarkForm">
             <input type="hidden" name="Id" value="${bookmark.Id}"/>
             <div class="form-group">
-                <img id="favicon" class="favicon" src="https://www.google.com/s2/favicons?domain=${bookmark.Url}" alt="Favicon">
+                <img id="favicon" class="favicon" src="https://www.google.com/s2/favicons?domain=${flag}" alt="Favicon">
             <br>
             <label for="Title" class="form-label">Titre </label>
             <input 
